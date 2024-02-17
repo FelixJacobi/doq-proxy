@@ -5,8 +5,8 @@ After=network.target
 
 [Service]
 Type=simple
-EnvironmentFile=/etc/default/doq-proxy.d/%i
-ExecStart=/usr/lib/doq-proxy/proxy -backend $BACKEND_HOST:$BACKEND_PORT -cert $CERT -key $KEY -listen $LISTEN_ADDR:$LISTEN_PORT
+EnvironmentFile=-/etc/default/doq-proxy.d/%i
+ExecStart=/usr/lib/doq-proxy/proxy -backend ${BACKEND_HOST}:${BACKEND_PORT} -cert ${CERT} -key ${KEY} -listen ${LISTEN_ADDR}:${LISTEN_PORT}
 Restart=on-failure
 RestartPreventExitStatus=0
 # allow to bind to privileged port

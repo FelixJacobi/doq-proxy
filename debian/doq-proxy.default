@@ -1,6 +1,6 @@
-BACKEND_HOST=127.0.0.1
-BACKEND_PORT=53
-CERT=/etc/ssl/certs/ssl-cert-snakeoil.pem
-KEY=/etc/ssl/private/ssl-cert-snakeoil.key
+BACKEND_HOST="127.0.0.1"
+BACKEND_PORT="53"
+CERT="/etc/ssl/certs/ssl-cert-snakeoil.pem"
+KEY="/etc/ssl/private/ssl-cert-snakeoil.key"
 LISTEN_ADDR="[::]"
-LISTEN_PORT=853
+LISTEN_PORT="853"
