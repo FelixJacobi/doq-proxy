@@ -1,0 +1,16 @@
+#!/bin/sh
+set -e
+
+if [ "$1" = "purge" ]
+then
+  if getent passwd doq-proxy > /dev/null
+  then
+    deluser --quiet doq-proxy ||:
+  fi
+  if getent group doq-proxy > /dev/null
+  then
+    delgroup --quiet doq-proxy ||:
+  fi
+fi
+
+#DEHELPER#

@@ -1,0 +1,4 @@
+I:.
+
+proxy usr/lib/doq-proxy
+debian/sysctl/doq-proxy.conf usr/lib/sysctl.d

@@ -1,0 +1,15 @@
+#!/usr/bin/make -f
+
+%:
+	dh $@
+
+client: cmd/client/go.mod
+	go build ./cmd/client
+
+proxy: cmd/proxy/go.mod
+	go build ./cmd/proxy
+
+override_dh_auto_clean:
+	rm -f go.sum
+
+override_dh_auto_build: proxy client

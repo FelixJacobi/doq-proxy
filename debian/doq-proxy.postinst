@@ -1,0 +1,11 @@
+#!/bin/sh
+set -e
+
+if [ "$1" = "configure" ]
+then
+  adduser --system --group --disabled-password --home /nonexistent \
+      --no-create-home --shell /usr/sbin/nologin doq-proxy
+  usermod -a -G ssl-cert doq-proxy
+fi
+
+#DEBHELPER#

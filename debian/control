@@ -1,0 +1,28 @@
+Source: doq-proxy
+Section: misc
+Priority: optional
+Maintainer: Felix Jacobi <Felix@jacobi-hamburg.net>
+Build-Depends: debhelper-compat (= 13),
+  dh-sequence-iserv,
+  dh-sequence-stsbl,
+  golang-go (>= 2:1.21),
+Standards-Version: 4.4.1
+Homepage: https://github.com/ns1labs/doq-proxy
+Rules-Requires-Root: no
+
+Package: doq-proxy
+Architecture: any
+Depends: ${misc:Depends},
+  ssl-cert,
+Description: DNS-over-QUIC to UDP Proxy
+ DNS-over-QUIC to UDP proxy and client implementation.
+ .
+ This package contains the proxy component.
+
+Package: doq-client
+Architecture: any
+Depends: ${misc:Depends},
+Description: DNS-over-QUIC to UDP Proxy
+ DNS-over-QUIC to UDP proxy and client implementation.
+ .
+ This package contains the client to query DNS-over-quick servers.
