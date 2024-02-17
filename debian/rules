@@ -3,13 +3,15 @@
 %:
 	dh $@
 
-client: cmd/client/go.mod
+client: cmd/client/main.go
+	go get ./cmd/client
 	go build ./cmd/client
 
-proxy: cmd/proxy/go.mod
+proxy: cmd/proxy/main.go
+	go get ./cmd/proxy
 	go build ./cmd/proxy
 
 override_dh_auto_clean:
-	rm -f go.sum
+	rm -f go.sum Makefile.iservmake
 
 override_dh_auto_build: proxy client

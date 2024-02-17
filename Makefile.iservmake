@@ -1,0 +1,140 @@
+## Start: (automatic configuration) ##
+
+LOCALE_ROOT=locale
+LOCALE_EXCLUDES = 
+
+## End: (automatic configuration) ##
+
+## Start: /usr/lib/iserv/buildtools/mk/extract_translations.mk ##
+
+LOCALE_ROOT = locale
+LOCALE_TARGET_ROOT = locale
+.PHONY: extract_translations
+extract_translations: ## Extract all gettext strings from source code into .pot files
+extract_translations:
+	@true
+
+## End: /usr/lib/iserv/buildtools/mk/extract_translations.mk ##
+
+## Start: /usr/lib/iserv/buildtools/mk/locale.mk ##
+
+.PHONY: fetch_translations
+fetch_translations: ## Download all translations from translation server
+fetch_translations:
+	@true
+
+.PHONY: compile_translations
+compile_translations: ## Compile all translations to a catalogue
+compile_translations:
+	@true
+
+## End: /usr/lib/iserv/buildtools/mk/locale.mk ##
+
+## Start: /usr/lib/iserv/buildtools/mk/deploy_translations.mk ##
+
+.PHONY: deploy_translations
+deploy_translations: ## Push translations to dev3.iserv.eu
+deploy_translations:
+	@true
+
+## End: /usr/lib/iserv/buildtools/mk/deploy_translations.mk ##
+
+## Start: /usr/lib/iserv/buildtools/mk/iservinstall.mk ##
+
+devinstall: ## Performs a development installation of this package
+devinstall: $(DEPENDENCY_TARGETS)
+	iservinstall $(ISERVINSTALL_ARGS) $(ISERVINSTALL_INTERNAL_ARGS)
+
+iservinstall: ## Alias of devinstall
+iservinstall: $(DEPENDENCY_TARGETS)
+	iservinstall $(ISERVINSTALL_ARGS) $(ISERVINSTALL_INTERNAL_ARGS)
+
+## End: /usr/lib/iserv/buildtools/mk/iservinstall.mk ##
+
+## Start: /usr/lib/iserv/buildtools/mk/clean.mk ##
+
+.PHONY: clean
+clean: ## Removes all built caches
+clean: $(CLEAN_TARGETS)
+	@true
+
+.PHONY: distclean
+distclean: ## Removes all built artifacts
+distclean: clean $(DISTCLEAN_TARGETS)
+	@true
+
+## End: /usr/lib/iserv/buildtools/mk/clean.mk ##
+
+## Start: /usr/lib/iserv/buildtools/mk/help.mk ##
+
+.PHONY: help
+help: ## display help messages
+	@cat $(MAKEFILE_LIST) | egrep '^([a-zA-Zi_-]*:).*?##(.*)$$' | awk -F "##" '{printf "%-30s %s\n", $$1, $$2}'
+
+.PHONY: list
+list: ## list all supported targets
+	@cat $(MAKEFILE_LIST) | egrep '^([a-zA-Zi_-]*:).*?##(.*)$$' | awk -F ": ##" '{ print $$1 }'
+
+## End: /usr/lib/iserv/buildtools/mk/help.mk ##
+
+## Start: /usr/lib/iserv/buildtools/mk/debug.mk ##
+
+.PHONY:	debug
+debug: ## display local make variables defined
+	@$(foreach V, $(sort $(.VARIABLES)), \
+		$(if $(filter-out environment% default automatic,\
+			$(origin $V)), \
+			$(warning $V = $($V) )) \
+	)
+
+.PHONY:	debug-all
+debug-all: ## display all make variables defined
+	@$(foreach V, $(sort $(.VARIABLES)), \
+		$(warning $V = $($V) ) \
+	)
+
+## End: /usr/lib/iserv/buildtools/mk/debug.mk ##
+
+# To allow using "set -o pipefail" in targets
+export SHELL := /bin/bash
+
+.PHONY: run_tools
+run_tools: ## Run all tools (linters and test frameworks)
+run_tools: lint tests
+
+.PHONY: reports
+reports: ## Run all tools (linters and test frameworks) and generate reports
+reports: $(REPORT_TARGETS)
+
+.PHONY: tests
+tests: ## Run all test frameworks
+tests: $(TEST_TARGETS)
+
+.PHONY: lint
+lint: ## Run all linters
+lint: $(LINT_TARGETS)
+
+.PHONY: fix-cs
+fix-cs: ## Run all CS fixers
+fix-cs: $(FIX_CS_TARGETS)
+
+.PHONY: dependencies
+dependencies: ## Build all artifacts
+dependencies: $(DEPENDENCY_TARGETS)
+
+.PHONY: heile
+heile: ## makes the iserv heile
+heile:
+	igit pull
+	igit make fetch_translations
+	igit install
+	aptitude install -f
+	iservdevwebpack
+	symfony cache:clear
+	iservchk
+
+.DEFAULT_GOAL := default
+.PHONY: default
+default:
+	@echo "Please run a more specific command such as 'make help'" >&2
+	@exit 1
