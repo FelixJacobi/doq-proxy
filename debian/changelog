@@ -1,3 +1,13 @@
+doq-proxy (0~20240217+git.5f37997-2) unstable; urgency=medium
+
+  * Deactivated dh_iservmake
+  * Removed Makefile.iservmake
+  * Removed broken lintian override
+  * Deactivated dh_iservclean
+  * Fixed path in systemd unit
+
+ -- Felix Jacobi <Felix@jacobi-hamburg.net>  Sat, 17 Feb 2024 23:20:40 +0100
+
 doq-proxy (0~20240217+git.5f37997-1) unstable; urgency=medium
 
   * Initial Release.
