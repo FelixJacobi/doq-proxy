@@ -1,3 +1,9 @@
+doq-proxy (0~20240217+git.5f37997-3) unstable; urgency=medium
+
+  * Fixed variables in /etc/default/doq-proxy and systemd units
+
+ -- Felix Jacobi <Felix@jacobi-hamburg.net>  Sat, 17 Feb 2024 23:56:22 +0100
+
 doq-proxy (0~20240217+git.5f37997-2) unstable; urgency=medium
 
   * Deactivated dh_iservmake
