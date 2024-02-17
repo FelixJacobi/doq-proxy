@@ -1,5 +1,5 @@
-doq-proxy (24.02.17-1) UNRELEASED; urgency=medium
+doq-proxy (0~20240217+git.5f37997) unstable; urgency=medium
 
   * Initial Release.
 
- -- Stadtteilschule Blankenese <repository@stsbl.de>  Sat, 17 Feb 2024 20:28:19 +0100
+ -- Felix Jacobi <Felix@jacobi-hamburg.net>  Sat, 17 Feb 2024 22:53:42 +0100
