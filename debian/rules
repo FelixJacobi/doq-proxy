@@ -13,5 +13,9 @@ proxy: cmd/proxy/main.go
 
 override_dh_auto_clean:
 	rm -f go.sum Makefile.iservmake
+	rm -f proxy client
 
 override_dh_auto_build: proxy client
+
+# Not working for go binaries
+override_dh_dwz:

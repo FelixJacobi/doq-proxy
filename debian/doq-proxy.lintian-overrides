@@ -1,0 +1,2 @@
+doq-proxy: hardening-no-pie [usr/lib/doq-proxy/proxy]
+doq-proxy: hardening-no-relro [usr/lib/doq-proxy/proxy]
