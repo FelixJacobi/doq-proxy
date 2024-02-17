@@ -21,3 +21,6 @@ override_dh_dwz:
 
 # Unused
 override_dh_iservmake:
+
+# Unused
+override_dh_iservclean:
